@@ -85,13 +85,43 @@
   .note-delete-btn {
     border: 0;
     background-color: transparent;
-    margin-left: auto;
+    margin-left: 4px;
+    cursor: pointer;
+    padding: 0;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .note-font-btn-large {
+    border: 0;
+    background-color: transparent;
+    margin-left: 4px;
+    cursor: pointer;
+    padding: 0;
+    width: rem;
+    height: 1rem;
+  }
+
+  .note-font-btn-small {
+    border: 0;
+    background-color: transparent;
+    margin-left: 4px;
     cursor: pointer;
     padding: 0;
     width: 1rem;
     height: 1rem;
   }
   
+  .note-save-btn {
+    border: 0;
+    background-color: transparent;
+    margin-left: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 1rem;
+    height: 1rem;
+  }
+
   .note-add-btn {
     margin: 1rem;
     border: 0;
