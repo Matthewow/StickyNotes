@@ -1,13 +1,14 @@
 # StickyNotes
 
+@author: [Matthew WANG](https://github.com/Matthewow) & [Zijian](https://github.com/wuzijian4)
+
 Features:
 - User management, supporting signing in and signing up
 - Multi-device deplotment, for PC and mobile devices
 - Dragging and resizing 
 - Font size can be altered
 
-Find demostration video link here
-```https://youtu.be/H5PhZz-7aDo```
+Find demostration video [link](https://youtu.be/H5PhZz-7aDo) here.
 
 ## Back-end
 The stickyNotes.zip in the backend_api directory contains both the front end and back end code. You can download it and test in the local environment directly.
