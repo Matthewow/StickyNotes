@@ -107,6 +107,7 @@ var infofontsize = null;
 
     render() {
       const el = document.createElement('div');
+      el.setAttribute("id", infonoteid + "bar")
       el.classList.add('note-footer');
 
       this.props.colors.map((color) => {
@@ -119,6 +120,7 @@ var infofontsize = null;
       el.appendChild((new NoteFontSmallButton()).render());
       el.appendChild((new NoteSaveButton()).render());
       el.appendChild((new NoteDeleteButton()).render());
+      el.appendChild((new NotePinButton()).render());
 
       return el;
     }
@@ -197,7 +199,7 @@ var infofontsize = null;
       el.setAttribute('aria-label', 'Large');
 
       const icon = document.createElement('i');
-      icon.classList.add('fa', 'fa-angle-up');  
+      icon.classList.add('fa', 'fa-font');  
       el.appendChild(icon);
       el.addEventListener('click', this.handleClick);
       return el;
@@ -223,7 +225,7 @@ var infofontsize = null;
       el.setAttribute('aria-label', 'Small');
 
       const icon = document.createElement('i');
-      icon.classList.add('fa', 'fa-angle-down');
+      icon.classList.add('fa', 'fa-font', 'fa-xs');
       el.appendChild(icon);
       el.addEventListener('click', this.handleClick);
       return el;
@@ -248,6 +250,44 @@ var infofontsize = null;
 
       const icon = document.createElement('i');
       icon.classList.add('fa', 'fa-save');
+      el.appendChild(icon);
+
+      el.addEventListener('click', this.handleClick);
+
+      return el;
+    }
+  }
+
+  class NotePinButton {
+    handleClick(event) {    
+      var a = this.id;
+
+      const note = document.getElementById(a.substring(0,32))
+      if (this.classList.contains('note-pin-btn')){
+        this.classList.remove("note-pin-btn");
+        this.classList.add("note-unpin-btn");
+        note.classList.remove("note");
+        note.classList.add("note-mv");
+      }
+      else if (this.classList.contains('note-unpin-btn')){
+        this.classList.remove("note-unpin-btn");
+        this.classList.add("note-pin-btn");
+        note.classList.remove("note-mv");
+        note.style.top = note.offsetTop + "px";
+        note.style.left = note.offsetLeft + "px";
+        note.classList.add("note");
+      }
+    }
+
+    render() {
+      const el = document.createElement('button');
+      el.classList.add('note-pin-btn');
+      el.setAttribute('type', 'button');
+      el.setAttribute('id', infonoteid + "pin");
+      el.setAttribute('aria-label', 'Pin');
+
+      const icon = document.createElement('i');
+      icon.classList.add("fas", "fa-thumbtack");
       el.appendChild(icon);
 
       el.addEventListener('click', this.handleClick);
@@ -282,11 +322,11 @@ var infofontsize = null;
             })).render());
         }
         else{
-
             infonoteid = makeid(32);
             console.log(infonoteid);
             notepost("create", infonoteid, "Untitled", "", "12pt", "");
             this.props.container.appendChild((new Note({})).render());
+            dragElement(document.getElementById(infonoteid));
         }
     }
 
@@ -380,7 +420,7 @@ function notepost(type, noteid, title, color, fontsize, content){
 
   var url = "none"
   var method = "POST"
-    var server = "sticknotes-env.eba-jcpixcct.us-east-1.elasticbeanstalk.com/api"
+    var server = "stickynotes-env.eba-b3wzhjhx.us-east-1.elasticbeanstalk.com/api"
     if(type == "create"){
         url = "http://" + server + "/newNote/" + userid;
         method = "PUT";
@@ -478,9 +518,6 @@ function notepost(type, noteid, title, color, fontsize, content){
         else if(this.status == 400){
             alert("Maybe the server is down...");
         }
-        // else {
-        //     alert("Unknown Note Error");
-        // }
 	};
 
 }
@@ -511,7 +548,7 @@ function submit(submittype){
 
 function userpost(username, password, email, submittype){
 
-    var url = 'http://sticknotes-env.eba-jcpixcct.us-east-1.elasticbeanstalk.com/api/authentify';
+    var url = 'http://stickynotes-env.eba-b3wzhjhx.us-east-1.elasticbeanstalk.com/api/authentify';
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -524,7 +561,7 @@ function userpost(username, password, email, submittype){
             "username": username,
             "password": password
         }));
-        console.log("Signing up with "+ username);
+        console.log("Signing in with "+ username);
     }
     if (submittype == 2){
         xhr.send(JSON.stringify({
@@ -533,7 +570,7 @@ function userpost(username, password, email, submittype){
             "password": password,
             "email": email
         }));
-        console.log("Signing in with "+ username);
+        console.log("Signing up with "+ username);
     }
 
     xhr.onreadystatechange = function() {
@@ -548,12 +585,11 @@ function userpost(username, password, email, submittype){
                 y.style.display = "block";
                 userid = username;
                 document.getElementById("logoutbutton").textContent = ' Hi, ' + userid + ' Click Here to Log Out';
-
                 var notelist = response["noteList"];
                 createpage(notelist)
 			}
 			else{
-				alert("Invalid Input");
+				alert("Wrong password. Try again or double check your username.");
 			}			
 		}
 	};
@@ -569,6 +605,8 @@ function createpage (noteList){
         infofontsize = noteinfo["font"];
         infocontent = noteinfo["content"];
         addButton.click();
+        console.log("debug",infonoteid)
+        dragElement(document.getElementById(infonoteid));
     }
     noteinfo = false;
     infocolor = null;
@@ -588,4 +626,43 @@ function makeid(length) {
     return result;
  }
  
- console.log(makeid(5));
+ function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "bar")) {
+      // if present, the header is where you move the DIV from:
+      document.getElementById(elmnt.id + "bar").onmousedown = dragMouseDown;
+    } else {
+      // otherwise, move the DIV from anywhere inside the DIV:
+      elmnt.onmousedown = dragMouseDown;
+    }
+  
+    function dragMouseDown(e) {
+      e = e || window.event;
+      e.preventDefault();
+      // get the mouse cursor position at startup:
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      // call a function whenever the cursor moves:
+      document.onmousemove = elementDrag;
+    }
+  
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      // calculate the new cursor position:
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      // set the element's new position:
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+  
+    function closeDragElement() {
+      // stop moving when mouse button is released:
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
+  }
