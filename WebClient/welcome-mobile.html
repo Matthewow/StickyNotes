@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- author: WANG Zhao, WU Zijian -->
+	<title>Sticky Notes</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="This is the entry page of the whole site">
+    <meta name="author" content="WANG Zhao, Wu Zijian">  
+    <meta name="keywords" content="Sticky Notes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="login.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./user-page.css">
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script> -->
+
+</head>
+<body style="background-image: url(./bg.jpg); background-color: rgba(110, 110, 116, 0.6); background-blend-mode: lighten;">
+    <div id="app" hidden></div>
+    <div class="login-wrap" id="login-in-area" >
+        <div class="login-html">
+            <div class="title">Sticky Notes</div>
+            <br>
+            <br>
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+            <div class="login-form">
+                <div class="sign-in-htm">
+                    <div><br><br></div>
+                    <div class="group">
+                        <label for="user" class="label">Username</label>
+                        <input id="sign-in-user" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="sign-in-pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div onclick="submit(1)" class="group">
+                        <input  type="submit" class="button" value="Sign In">
+                    </div>
+                    <!-- <div class="foot-lnk">
+                        <a href="#forgot">Forgot Password?</a>
+                    </div> -->
+                </div>
+
+                <div class="sign-up-htm">
+                        <div class="group">
+                        <label for="user" class="label">Username</label>
+                        <input id="sign-up-user" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="sign-up-pass1" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Repeat Password</label>
+                        <input id="sign-up-pass2" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Email Address</label>
+                        <input id="email-address" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <input onclick="submit(2)" type="submit" class="button" value="Sign Up">
+                    </div>
+                    <div class="foot-lnk">
+                        <label for="tab-1">Already Member?</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div style="position: relative; top: 5%;">
+                <p style="font-size: smaller;">developped by WANG Zhao and Wu Zijian</p>
+                <p style="font-size: smaller;">@copyright reserved</p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script type="text/javascript" src = "login-mobile.js"></script>
+<script src="https://kit.fontawesome.com/14e712fb41.js" crossorigin="anonymous"></script>
+<!-- <script src="./user-page.js"></script> -->
+</html>
