@@ -8,7 +8,17 @@
     resize: both;
     overflow: auto;
   }
-  
+  .note-mv {
+    position: absolute;
+    margin: 0 0 1rem 1rem;
+    width: 300px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.3);
+    float: left;
+    resize: both;
+    overflow: auto;
+  }
   .note-red {
     background-color: #ff9999;
   }
@@ -113,6 +123,26 @@
   }
   
   .note-save-btn {
+    border: 0;
+    background-color: transparent;
+    margin-left: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .note-pin-btn {
+    border: 1;
+    background-color: transparent;
+    margin-left: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .note-unpin-btn {
     border: 0;
     background-color: transparent;
     margin-left: 20px;
