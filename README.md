@@ -1,6 +1,7 @@
 # StickyNotes
 
 @author: [Matthew WANG](https://github.com/Matthewow) & [Zijian](https://github.com/wuzijian4)
+@copyright reserved
 
 Features:
 - User management, supporting signing in and signing up
