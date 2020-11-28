@@ -10,7 +10,7 @@ Features:
 - Dragging and resizing 
 - Font size can be altered
 
-Find demostration video [link](https://youtu.be/H5PhZz-7aDo) here.
+Find the [demostration video link](https://youtu.be/H5PhZz-7aDo) here.
 
 ## Back-end
 The stickyNotes.zip in the backend_api directory contains both the front end and back end code. You can download it and test in the local environment directly.
